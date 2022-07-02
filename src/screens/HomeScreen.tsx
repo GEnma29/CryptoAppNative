@@ -13,7 +13,7 @@ const HomeScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [pageIndex, setPageIndex] = useState(0)
   
-  const { data : coins } = useSWR<CoinResponse>(`https://api.coinlore.net/api/tickers/?start=${pageIndex}&limit=100`, fetcher);
+  const { data : coins } = useSWR<CoinResponse>(`tickers/?start=${pageIndex}&limit=100`, fetcher);
 
 
   const listOfCoins :coin[] = coins ? coins.data : []
@@ -33,6 +33,7 @@ const HomeScreen = () => {
       </View>
         <FlatList
           data={filteredCoins}
+          style={styles.listStyles}
           ItemSeparatorComponent={ItemSeparator}
           keyExtractor={(item)=> item.id}
           getItemLayout={(data, index) => (
@@ -56,16 +57,30 @@ const HomeScreen = () => {
 
 export default HomeScreen
 
+
+
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: '#1F618D',
+    justifyContent:'center',
+    alignContent: 'center',
+    width:'100%',
   },
   containerSearch:{
     display: 'flex',
     justifyContent: 'center',
     alignItems:'center',
     padding: 10,
+    marginTop: "15%"
+
+  },
+  listStyles:{
+    display: 'flex',
+    marginTop: '15%',
+    borderRadius: 24,
+    backgroundColor: '#FFFF',
 
   },
   footer:{

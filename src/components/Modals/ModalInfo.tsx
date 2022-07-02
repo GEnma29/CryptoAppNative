@@ -4,7 +4,6 @@ import { Button, Modal, Portal, Text } from 'react-native-paper';
 import useSWR from 'swr';
 import { fetcher } from '../../utlis/fetcher';
 import { coin } from '../../types/coinType'
-import { Exchange } from '../../types/exchangeType';
 import CardCoin from '../Cards/CardCoin';
 import CardExchange from '../Cards/CardExchange';
 
@@ -20,8 +19,8 @@ type props = {
 
 const ModalInfo = ({ visible, hideModal, id , type}: props) => {
 
-  const { data: coin } = useSWR<coin[]>(type === 'coin' ? `https://api.coinlore.net/api/ticker/?id=${id}` : null, fetcher)
-  const { data: exchange } = useSWR(type === 'exchange' ? `https://api.coinlore.net/api/exchange/?id=${id}` : null, fetcher)
+  const { data: coin } = useSWR<coin[]>(type === 'coin' ? `ticker/?id=${id}` : null, fetcher)
+  const { data: exchange } = useSWR(type === 'exchange' ? `exchange/?id=${id}` : null, fetcher)
 
   const exchangeArry :any[] = exchange ? Object.entries(exchange).map((key : any) => ({ ...key[1] })) : []
    console.log(exchangeArry)
@@ -37,8 +36,8 @@ const ModalInfo = ({ visible, hideModal, id , type}: props) => {
         <CardExchange data={exchangeArry} />
         }
         <View style={styles.containerButton}>
-        <Button style={styles.button}  onPress={hideModal}>
-         { type === "coin" ?  'See another coin' : 'See another exchange'}
+        <Button  style={[styles.button]}   onPress={hideModal}>
+         { type === "coin" ?  'Explorer Coins' : 'Explorer Exchange'}
         </Button>
         </View>
       </Modal>
@@ -49,8 +48,8 @@ const ModalInfo = ({ visible, hideModal, id , type}: props) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column',
-    width: '98%',
+    width: '92%',
+    alignSelf: 'center',
     backgroundColor: '#FFFF',
     padding: 8,
     borderRadius: 10
@@ -68,8 +67,10 @@ const styles = StyleSheet.create({
   },
   button:{
     display: 'flex',
+    padding: 10,
     marginTop: 5,
     width: 180,
+    color: '#1F618D',
   }
 
 });

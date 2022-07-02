@@ -20,7 +20,7 @@ const CardExchange = ({data}:props) => {
       <Text style={styles.dataValue}>{dateFormat(`${data[0].date_live}`)}</Text>
     </View>
     <View style={styles.containerData}>
-      <Text style={styles.dataText}>Url</Text>
+      <Text style={styles.dataText}>Go to site</Text>
       <UrlButton url={data[0].url}  label={data[0].name}/>
     </View>
     {
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     subtitle:{
         fontSize: 20,
         fontWeight: '800',
-      color: ''
+        color: '',
+        marginBottom: 3,
     },
     dataText: {
       display: 'flex',
@@ -80,7 +81,8 @@ const styles = StyleSheet.create({
     containerData: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      marginTop: 2,
   
     }
   

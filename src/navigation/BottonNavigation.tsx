@@ -18,6 +18,11 @@ const BottomNavigation = () => {
           sceneContainerStyle={{padding: 2}}
           screenOptions={{
             tabBarActiveTintColor: '#5ac2db',
+            tabBarStyle:{
+              padding: 5,
+              marginBottom: 1,
+            },
+            headerShown: false,
           }}
         >
           <Tab.Screen
@@ -26,7 +31,7 @@ const BottomNavigation = () => {
             options={{
               tabBarLabel: 'Coins',
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="bitcoin"  color={color} size={size} />
+                <MaterialCommunityIcons name="bitcoin"   color={color} size={size} />
               ),
             }}
           />

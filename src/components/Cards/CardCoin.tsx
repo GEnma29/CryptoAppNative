@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 25,
       fontWeight: '800',
-      color: '',
+      color: '#1F618D',
       marginBottom: 5,
     },
     dataText: {

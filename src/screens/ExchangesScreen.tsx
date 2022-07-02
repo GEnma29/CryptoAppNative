@@ -14,7 +14,7 @@ const ExchangesScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [pageIndex, setPageIndex] = useState(0)
   
-  const { data : Exchanges } = useSWR(`https://api.coinlore.net/api/exchanges/`, fetcher);
+  const { data : Exchanges } = useSWR(`exchanges/`, fetcher);
   
   const listOfExchanges :any[] = Exchanges ? Object.entries(Exchanges).map((key : any) => ({ ...key[1] })) : []
   const filterExchanges0 = listOfExchanges.filter((exchange) => {
@@ -37,9 +37,9 @@ const ExchangesScreen = () => {
       </View>
       <FlatList
           data={filteredExchanges}
+          style={styles.listStyles}
           ItemSeparatorComponent={ItemSeparator}
           keyExtractor={(item)=> item.id}
-          ListHeaderComponent={<ListHeader firstColumn='Exchange name' secoundColumn='Volumen on USD' />}
           getItemLayout={(data, index) => (
             {length: 100, offset: 100 * index, index}
           )}
@@ -55,13 +55,25 @@ export default ExchangesScreen
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: '#1F618D',
+    justifyContent:'center',
+    alignContent: 'center',
+    width:'100%',
   },
   containerSearch:{
     display: 'flex',
     justifyContent: 'center',
     alignItems:'center',
     padding: 10,
+    marginTop: "15%"
+
+  },
+  listStyles:{
+    display: 'flex',
+    marginTop: '15%',
+    borderRadius: 24,
+    backgroundColor: '#FFFF',
 
   },
   footer:{
